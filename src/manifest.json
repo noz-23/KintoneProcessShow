@@ -1,0 +1,51 @@
+{
+  "manifest_version": 1,
+  "version": "0.1.0",
+  "type": "APP",
+  "name": {
+    "en": "KintoneProcessShow",
+    "ja": "プロセス位置表示"
+  },
+  "description": {
+    "en": "Show Process Position",
+    "ja": "プロセス位置の表示"
+  },
+  "icon": "image/icon.png",
+  "homepage_url": {
+    "en": "https://github.com/noz-23/KintoneProcessShow",
+    "ja": "https://github.com/noz-23/KintoneProcessShow"
+  },
+  "desktop": {
+    "js": [
+      "https://js.cybozu.com/jquery/3.7.1/jquery.min.js",
+      "https://js.cybozu.com/jsrender/1.0.13/jsrender.min.js",
+      "js/desktop.js"
+    ],
+    "css": [
+      "css/51-modern-default.css",
+      "css/desktop.css"
+    ]
+  },
+  "config": {
+    "html": "html/config.html",
+    "js": [
+      "https://js.cybozu.com/jquery/3.7.1/jquery.min.js",
+      "https://js.cybozu.com/jsrender/1.0.13/jsrender.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/tinyColorPicker/1.1.1/jqColorPicker.min.js",
+      "js/config.js"
+    ],
+    "css": [
+      "css/51-modern-default.css",
+      "css/config.css"
+    ],
+    "required_params": [
+      "paramTextColorEnd",
+      "paramTextColorNow",
+      "paramTextColorYet",
+
+      "paramBackColorEnd",
+      "paramBackColorNow",
+      "paramBackColorYet"
+    ]
+  }
+}
