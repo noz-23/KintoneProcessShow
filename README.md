@@ -8,6 +8,10 @@
 
 表示色は｢済｣｢今｣｢未｣でそれぞれで変更きます。
 
+### イメージ
+
+　![KintoneProcessShow](https://github.com/noz-23/KintoneProcessShow/assets/160399039/b964f12f-be55-4da3-bfb1-485463b6fac6)
+
 ## 2.注意点
 
 表示位置はフォーム上部となります。
