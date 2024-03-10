@@ -1,6 +1,6 @@
 {
   "manifest_version": 1,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "APP",
   "name": {
     "en": "KintoneProcessShow",
@@ -17,8 +17,8 @@
   },
   "desktop": {
     "js": [
-      "https://js.cybozu.com/jquery/3.7.1/jquery.min.js",
-      "https://js.cybozu.com/jsrender/1.0.13/jsrender.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/jsrender/0.9.91/jsrender.min.js",
       "js/desktop.js"
     ],
     "css": [
@@ -29,8 +29,8 @@
   "config": {
     "html": "html/config.html",
     "js": [
-      "https://js.cybozu.com/jquery/3.7.1/jquery.min.js",
-      "https://js.cybozu.com/jsrender/1.0.13/jsrender.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/jsrender/0.9.91/jsrender.min.js",
       "https://cdnjs.cloudflare.com/ajax/libs/tinyColorPicker/1.1.1/jqColorPicker.min.js",
       "js/config.js"
     ],

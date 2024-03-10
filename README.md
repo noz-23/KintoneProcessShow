@@ -10,13 +10,9 @@
 
 ## 2.注意点
 
-現状αバージョンです。
-
-設定画面のColorPickerで｢OK｣が押せません。
-
-JQueryでcontextが作られない・・・
-
 表示位置はフォーム上部となります。
+
+tinyColorPicker が JQuery の Ver.3 以降(context削除)に対応してないっぽいので、再利用する場合は気をつけ下さい。
 
 ## 3.今後
 
@@ -30,9 +26,18 @@ MIT license
 
 JQuery   :https://jquery.com
 
+    https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js
+          
+
 jsrender :https://www.jsviews.com
 
+    https://cdnjs.cloudflare.com/ajax/libs/jsrender/0.9.91/jsrender.min.js
+
 tinyColorPicker and colors :https://github.com/PitPik/tinyColorPicker
+
+    https://cdnjs.cloudflare.com/ajax/libs/tinyColorPicker/1.1.1/jqColorPicker.min.js
+
+
 
 参考
 　条件書式プラグイン：
@@ -43,6 +48,8 @@ tinyColorPicker and colors :https://github.com/PitPik/tinyColorPicker
 ## 6.バージョン履歴
 
  2024/03/06 0.1.0 初版 
+
+ 2024/03/10 0.1.1 とりあえずバージョン公開(cybozu から cloudflare へ cdn を変更で不具合修正)
  
 ## 7.連絡
 

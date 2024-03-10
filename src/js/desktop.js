@@ -6,6 +6,7 @@
  * Licensed under the MIT License
  * History
  *  2024/03/01 0.1.0 初版
+ *  2024/03/01 0.1.1 とりあえずバージョン
  */
 
 ( (PLUGIN_ID_)=>{
@@ -19,19 +20,23 @@
 
 	// Kintone プラグイン 設定パラメータ
 	const config = kintone.plugin.app.getConfig(PLUGIN_ID_);
-	
+
+  // 
 	const textColorEnd=config['paramTextColorEnd'];
 	const textColorNow=config['paramTextColorNow'];
 	const textColorYet=config['paramTextColorYet'];
 	
+  // 背景色
 	const backColorEnd=config['paramBackColorEnd'];
 	const backColorNow=config['paramBackColorNow'];
 	const backColorYet=config['paramBackColorYet'];
 	
+  // 文字の大きさ
 	const textSizeEnd=config['paramTextSizeEnd'];
 	const textSizeNow=config['paramTextSizeNow'];
 	const textSizeYet=config['paramTextSizeYet'];
 	  
+  // 文字装飾
 	const textFontEnd=config['paramTextFontEnd'];
 	const textFontNow=config['paramTextFontNow'];
 	const textFontYet=config['paramTextFontYet'];
@@ -73,6 +78,7 @@
     // 上部にステータス追加
     var flg =false;
     for(var elemnt of listSortStatus){
+      // ここら辺は、今後 css にしようと思います。
       let div = document.createElement("div");
       div.innerHTML = elemnt.name;
       div.style.width ='fit-content';
@@ -84,29 +90,31 @@
       if(elemnt.name ==nowStatus)
       {
       	// 今
-        div.style.textColor=textColorNow;
+        div.style.color=textColorNow;
         div.style.backgroundColor=backColorNow;
         div.style.fontSize =textSizeNow;
         div.style.textDecoration = textFontNow;
         flg =true;
       }else if( flg ==false)
       {
-      	// 未
-        div.style.textColor=textColorYet;
-        div.style.backgroundColor=backColorYet;
-        div.style.fontSize =textSizeYet;
-        div.style.textDecoration = textFontYet;
-      }else
-      {
       	// 済
-        div.style.textColor=textColorEnd;
+        div.style.color=textColorEnd;
         div.style.backgroundColor=backColorEnd;
         div.style.fontSize =textSizeEnd;
         div.style.textDecoration = textFontEnd;
+      }else
+      {
+      	// 未
+        div.style.color=textColorYet;
+        div.style.backgroundColor=backColorYet;
+        div.style.fontSize =textSizeYet;
+        div.style.textDecoration = textFontYet;
       }
 
+      // 追加
       headElemnt.appendChild(div);  
     };
+
     return events_;
   });
 })(kintone.$PLUGIN_ID);

@@ -6,6 +6,7 @@
  * Licensed under the MIT License
  * History
  *  2024/03/01 0.1.0 初版
+ *  2024/03/01 0.1.1 とりあえずバージョン
  *
  * New Condition Format plug-in
  * Copyright (c) 2016 Cybozu
@@ -18,21 +19,23 @@ jQuery.noConflict();
 (async (jQuery_,PLUGIN_ID_)=>{
   'use strict';
 
-  var self =this;
-
   // 設定パラメータ
+  // 文字色
   const ParameterTextColorEnd='paramTextColorEnd';
   const ParameterTextColorNow='paramTextColorNow';
   const ParameterTextColorYet='paramTextColorYet';
 
+  // 背景色
   const ParameterBackColorEnd='paramBackColorEnd';
   const ParameterBackColorNow='paramBackColorNow';
   const ParameterBackColorYet='paramBackColorYet';
 	
+  // 文字の大きさ
   const ParameterTextSizeEnd='paramTextSizeEnd';
   const ParameterTextSizeNow='paramTextSizeNow';
   const ParameterTextSizeYet='paramTextSizeYet';
 	  
+  // 文字装飾
   const ParameterTextFontEnd='paramTextFontEnd';
   const ParameterTextFontNow='paramTextFontNow';
   const ParameterTextFontYet='paramTextFontYet';
@@ -141,6 +144,7 @@ jQuery.noConflict();
   
   // Color Picker
   // https://github.com/PitPik/tinyColorPicker
+  // from Cybozu
   const defaultColorPickerConfig = {
     opacity: false,
     doRender: false,
@@ -399,44 +403,42 @@ jQuery.noConflict();
     });  
   }
 
-  jQuery(document).ready(async () => {
-    // 言語設定
-    settingLang();
-    await settingHtml();
+  console.log('Run Script');
+  // 言語設定
+  settingLang();
+  await settingHtml();
 
-    // 保存
-    jQuery(Parameter.Html.Ok).click(() =>{saveSetting();});
-    // キャンセル
-    jQuery(Parameter.Html.Cancel).click(()=>{history.back();});
+  // 保存
+  jQuery(Parameter.Html.Ok).click(() =>{saveSetting();});
+  // キャンセル
+  jQuery(Parameter.Html.Cancel).click(()=>{history.back();});
 
-    // Change color
-    jQuery(Parameter.Elements.TextColorEnd).change(ChangeTextColor);
-    jQuery(Parameter.Elements.TextColorNow).change(ChangeTextColor);
-    jQuery(Parameter.Elements.TextColorYet).change(ChangeTextColor);
+  // Change color
+  jQuery(Parameter.Elements.TextColorEnd).change(ChangeTextColor);
+  jQuery(Parameter.Elements.TextColorNow).change(ChangeTextColor);
+  jQuery(Parameter.Elements.TextColorYet).change(ChangeTextColor);
 
-    // Change backgroundcolor
-    jQuery(Parameter.Elements.BackColorEnd).change(ChangeBackColor);
-    jQuery(Parameter.Elements.BackColorNow).change(ChangeBackColor);
-    jQuery(Parameter.Elements.BackColorYet).change(ChangeBackColor);
+  // Change backgroundcolor
+  jQuery(Parameter.Elements.BackColorEnd).change(ChangeBackColor);
+  jQuery(Parameter.Elements.BackColorNow).change(ChangeBackColor);
+  jQuery(Parameter.Elements.BackColorYet).change(ChangeBackColor);
 
-    jQuery(
-      Parameter.Elements.TextColorEnd,Parameter.Elements.TextColorNow,Parameter.Elements.TextColorYet,
-      Parameter.Elements.BackColorEnd,Parameter.Elements.BackColorNow,Parameter.Elements.BackColorYet
-    ).bind('paste', ChangeText);
+  jQuery(
+    Parameter.Elements.TextColorEnd,Parameter.Elements.TextColorNow,Parameter.Elements.TextColorYet,
+    Parameter.Elements.BackColorEnd,Parameter.Elements.BackColorNow,Parameter.Elements.BackColorYet
+  ).bind('paste', ChangeText);
 
-    // ｢color-paint-brush｣class にcolorPicker割り当て
-    const $colorPicker = jQuery('.color-paint-brush').colorPicker(defaultColorPickerConfig);
+  // ｢color-paint-brush｣class にcolorPicker割り当て
+  // colorPicker が JQuery v3 に対応してない(context利用してる)
+  const $colorPicker = jQuery('.color-paint-brush').colorPicker(defaultColorPickerConfig);
 
-    jQuery(document).keyup( (event) => {
-      const TAB_KEY_CODE = 9;
-      const ENTER_KEY_CODE = 13;
-      const ESC_KEY_CODE = 27;
-      if (event.keyCode === TAB_KEY_CODE || event.keyCode === ENTER_KEY_CODE || event.keyCode === ESC_KEY_CODE) {
-        $colorPicker.colorPicker.toggle(false);
-      }
-    });
-
-
+  jQuery(document).keyup( (event) => {
+    const TAB_KEY_CODE = 9;
+    const ENTER_KEY_CODE = 13;
+    const ESC_KEY_CODE = 27;
+    if (event.keyCode === TAB_KEY_CODE || event.keyCode === ENTER_KEY_CODE || event.keyCode === ESC_KEY_CODE) {
+      $colorPicker.colorPicker.toggle(false);
+    }
   });
 
 })(jQuery, kintone.$PLUGIN_ID);
