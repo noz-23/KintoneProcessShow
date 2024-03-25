@@ -4,14 +4,31 @@
  *  https://github.com/noz-23/
  *
  * Licensed under the MIT License
+ * 
+ *  利用：
+ *   JQuery:
+ *     https://jquery.com/
+ *     https://js.cybozu.com/jquery/3.7.1/jquery.min.js
+ *   
+ *   jsrender:
+ *     https://www.jsviews.com/
+ *     https://js.cybozu.com/jsrender/1.0.13/jsrender.min.js
+ *
+ *   tinyColorPicker and colors :
+ *     https://github.com/PitPik/tinyColorPicker
+ *     https://cdnjs.cloudflare.com/ajax/libs/tinyColorPicker/1.1.1/jqColorPicker.min.js
+ * 
+ *  参考：
+ *   New Condition Format plug-in
+ *    Copyright (c) 2016 Cybozu
+ *
+ *    Licensed under the MIT License
+ *
  * History
  *  2024/03/01 0.1.0 初版
  *  2024/03/01 0.1.1 とりあえずバージョン
+ *  2024/03/24 0.2.0 プラグイン設定画面に Google AdSense 追加
  *
- * New Condition Format plug-in
- * Copyright (c) 2016 Cybozu
- *
- * Licensed under the MIT License
  */
 
 jQuery.noConflict();
@@ -403,7 +420,6 @@ jQuery.noConflict();
     });  
   }
 
-  console.log('Run Script');
   // 言語設定
   settingLang();
   await settingHtml();
