@@ -10,7 +10,8 @@
 
 ### イメージ
 
-　![KintoneProcessShow](https://github.com/noz-23/KintoneProcessShow/assets/160399039/b964f12f-be55-4da3-bfb1-485463b6fac6)
+　![KintoneProcessShow03](https://github.com/noz-23/KintoneProcessShow/assets/160399039/10fb28f0-a625-4dfb-9a34-0bfba1bbdd08)
+
 
 ## 2.注意点
 
@@ -31,21 +32,21 @@ MIT license
 JQuery   :https://jquery.com
 
     https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js
-          
+
 
 jsrender :https://www.jsviews.com
 
     https://cdnjs.cloudflare.com/ajax/libs/jsrender/0.9.91/jsrender.min.js
 
+
 tinyColorPicker and colors :https://github.com/PitPik/tinyColorPicker
 
     https://cdnjs.cloudflare.com/ajax/libs/tinyColorPicker/1.1.1/jqColorPicker.min.js
 
-
-
 参考
 　条件書式プラグイン：
 　　https://github.com/kintone-samples/plugin-samples
+
 　　https://cybozu.dev/ja/kintone/tips/development/plugins/sample-plugin/conditionformat-v2-plugin/
 
 
@@ -54,6 +55,10 @@ tinyColorPicker and colors :https://github.com/PitPik/tinyColorPicker
  2024/03/06 0.1.0 初版 
 
  2024/03/10 0.1.1 とりあえずバージョン公開(cybozu から cloudflare へ cdn を変更で不具合修正)
+
+ 2024/03/24 0.2.0 プラグイン設定画面に Google AdSense 追加
+
+ 2024/06/06 0.3.0 プロセス処理者の名前表示機能追加
  
 ## 7.連絡
 
@@ -64,4 +69,9 @@ nzds23@yahoo.co.jp
 ライセンス条項を守って頂ければ特に制限ありません。
 
 可能なら記載したいので、メールアドレスに連絡頂ければ幸いです。
+
+プラグイン設定画面で Google AdSense の広告表示をしています。
+
+わかり易くしてますので、削除は自分でやって下さい。
+
 

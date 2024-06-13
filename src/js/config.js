@@ -28,7 +28,7 @@
  *  2024/03/01 0.1.0 初版
  *  2024/03/01 0.1.1 とりあえずバージョン
  *  2024/03/24 0.2.0 プラグイン設定画面に Google AdSense 追加
- *
+ *  2024/06/06 0.3.0 プロセス処理者の名前表示機能追加
  */
 
 jQuery.noConflict();
@@ -57,6 +57,10 @@ jQuery.noConflict();
   const ParameterTextFontNow='paramTextFontNow';
   const ParameterTextFontYet='paramTextFontYet';
 
+  // 処理者の名前表示
+  const ParameterShowName = 'paramShowName';
+
+
   // 環境設定
   const Parameter = {
   // 表示文字
@@ -66,16 +70,19 @@ jQuery.noConflict();
         plugin_description : 'Show Process Position and Set Text Color ,Size, Option',
         plugin_label       : 'Please Setting Text Color ,Size, Option',
 
+        label_show_name: 'Run Name',
+        show_name: 'Show',
+
         text_color_titile  :'Text Color',
         back_color_titile  :'Back Color',
         text_size_titile   :'Text Size',
         text_font_titile   :'Font Option',
 
-        status_label          : 'Status',
+        label_status: 'Status',
 
-        end_label          : ' End ',
-        now_label          : ' Now ',
-        yet_label          : ' Yet ',
+        label_end: ' End ',
+        label_now: ' Now ',
+        label_yet: ' Yet ',
 
         text_size_nomal    : 'Normal',
         text_size_x_small  : 'Very Small',
@@ -98,15 +105,18 @@ jQuery.noConflict();
         plugin_description : 'プロセス位置を表示し、文字色などを設定できます',
         plugin_label       : '文字色等を設定して下さい',
 
+        label_show_name: '処理者',
+        show_name: '表示',
+
         text_color_titile  : '文字色',
         back_color_titile  : '背景色',
         text_size_titile   : '文字サイズ',
         text_font_titile   : '文字オプション',
 
-        status_label       : '状　態',
-        end_label          : '　済　',
-        now_label          : '　今　',
-        yet_label          : '　未　',
+        label_status: '状　態',
+        label_end: '　済　',
+        label_now: '　今　',
+        label_yet: '　未　',
 
         text_size_nomal    : '変更なし',
         text_size_x_small  : '小さい',
@@ -155,6 +165,8 @@ jQuery.noConflict();
       TextFontEnd        : '#text_font_end',
       TextFontNow        : '#text_font_now',
       TextFontYet        : '#text_font_yet',
+
+      ShowName: '#show_name',
     },
   };
 
@@ -285,8 +297,7 @@ jQuery.noConflict();
   const settingLang=()=>{
     // 言語設定の取得
     Parameter.Lang.UseLang = kintone.getLoginUser().language;
-    switch( Parameter.Lang.UseLang)
-    {
+    switch (Parameter.Lang.UseLang) {
       case 'en':
       case 'ja':
         break;
@@ -310,10 +321,14 @@ jQuery.noConflict();
   */
   const settingHtml= async ()=>{
     // 現在データの呼び出し
-    var nowConfig =kintone.plugin.app.getConfig(PLUGIN_ID_);
+    const nowConfig = kintone.plugin.app.getConfig(PLUGIN_ID_);
     console.log('nowConfig:%o',nowConfig);
     
     // 現在データの表示
+    if (nowConfig[ParameterShowName]) {
+      jQuery(Parameter.Elements.ShowName).prop('checked', nowConfig[ParameterShowName] == 'true');
+    }
+
     if(nowConfig[ParameterTextColorEnd]){
       jQuery(Parameter.Elements.TextColorEnd).val(nowConfig[ParameterTextColorEnd]); 
       jQuery(Parameter.Elements.TextColorEnd).css('color',nowConfig[ParameterTextColorEnd]);
@@ -368,7 +383,10 @@ jQuery.noConflict();
   */
    const saveSetting=()=>{
     // 各パラメータの保存
-    var config ={};
+    let config = {};
+
+    config[ParameterShowName] = '' + jQuery(Parameter.Elements.ShowName).prop('checked');
+
     config[ParameterTextColorEnd]=jQuery(Parameter.Elements.TextColorEnd).val();
     config[ParameterTextColorNow]=jQuery(Parameter.Elements.TextColorNow).val();
     config[ParameterTextColorYet]=jQuery(Parameter.Elements.TextColorYet).val();
@@ -391,6 +409,10 @@ jQuery.noConflict();
     kintone.plugin.app.setConfig(config);
   };
 
+  /**
+   * 文字色の変更
+   * @returns 
+   */
   function ChangeTextColor(){
     const $el = jQuery(this);
 
@@ -400,6 +422,10 @@ jQuery.noConflict();
     return true;
   }
 
+  /**
+   * 背景色の変更
+   * @returns 
+   */
   function ChangeBackColor(){
     const $el = jQuery(this);
 
@@ -409,6 +435,10 @@ jQuery.noConflict();
     return true;
   }
 
+  /**
+   * 色の変更処理
+   * @param {*} evet_ 
+   */
   function ChangeText(evet_){
     const $el = jQuery(this);
     $el.attr('maxLength', '50');

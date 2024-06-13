@@ -2,6 +2,11 @@
   <h2 id="plugin_titile" class="settings-heading">{{html:lang.plugin_titile}}</h2>
   <p id="plugin_description" class="kintoneplugin-desc">{{html:lang.plugin_description}}</p>
   <form class="js-submit-settings">
+    <label id="comment_label" class="kintoneplugin-label">{{html:lang.label_show_name}}</label>
+    <div class="kintoneplugin-input-outer">
+      <input id="show_name" class="kintoneplugin-input-text" type="checkbox">
+      <label for="comment">{{html:lang.show_name}}</label>
+    </div>
     <p class="kintoneplugin-row">
       <label id="plugin_label" class="kintoneplugin-label">{{html:lang.plugin_label}}</label>
       <br>
@@ -11,7 +16,7 @@
         <!--  column -->
         <tr>
           <th class="kintoneplugin-table-th">
-            <span class="title">{{html:lang.status_label}}</span>
+            <span class="title">{{html:lang.label_status}}</span>
           </th>
           <th class="kintoneplugin-table-th">
             <span class="title">{{html:lang.text_color_titile}}</span>
@@ -31,15 +36,20 @@
         <!--  row end  -->
         <tr class="cf-plugin-text-line">
           <td>
-            <span class="title">{{html:lang.end_label}}</span>
+            <span class="title">{{html:lang.label_end}}</span>
           </td>
           <td>
             <div class="kintoneplugin-table-td-control">
               <div class="kintoneplugin-table-td-control-value">
                 <div>
-                  <input type="text" class="kintoneplugin-input-text text_color_end" maxlength="7" value="#000000" id="text_color_end"/>
+                  <input type="text" class="kintoneplugin-input-text text_color_end" maxlength="7" value="#000000"
+                    id="text_color_end" />
                   <i class="color-paint-brush" value="#000000">
-                    <svg width="15px" height="15px"  fill="#676767" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M167.02 309.34c-40.12 2.58-76.53 17.86-97.19 72.3-2.35 6.21-8 9.98-14.59 9.98-11.11 0-45.46-27.67-55.25-34.35C0 439.62 37.93 512 128 512c75.86 0 128-43.77 128-120.19 0-3.11-.65-6.08-.97-9.13l-88.01-73.34zM457.89 0c-15.16 0-29.37 6.71-40.21 16.45C213.27 199.05 192 203.34 192 257.09c0 13.7 3.25 26.76 8.73 38.7l63.82 53.18c7.21 1.8 14.64 3.03 22.39 3.03 62.11 0 98.11-45.47 211.16-256.46 7.38-14.35 13.9-29.85 13.9-45.99C512 20.64 486 0 457.89 0z"/></svg>  
+                    <svg width="15px" height="15px" fill="#676767" xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) -->
+                      <path
+                        d="M167.02 309.34c-40.12 2.58-76.53 17.86-97.19 72.3-2.35 6.21-8 9.98-14.59 9.98-11.11 0-45.46-27.67-55.25-34.35C0 439.62 37.93 512 128 512c75.86 0 128-43.77 128-120.19 0-3.11-.65-6.08-.97-9.13l-88.01-73.34zM457.89 0c-15.16 0-29.37 6.71-40.21 16.45C213.27 199.05 192 203.34 192 257.09c0 13.7 3.25 26.76 8.73 38.7l63.82 53.18c7.21 1.8 14.64 3.03 22.39 3.03 62.11 0 98.11-45.47 211.16-256.46 7.38-14.35 13.9-29.85 13.9-45.99C512 20.64 486 0 457.89 0z" />
+                    </svg>
                   </i>
                 </div>
               </div>
@@ -49,9 +59,14 @@
             <div class="kintoneplugin-table-td-control">
               <div class="kintoneplugin-table-td-control-value">
                 <div>
-                  <input type="text" class="kintoneplugin-input-text back_color_end" maxlength="7" value="#FFFFFF" id="back_color_end"/>
+                  <input type="text" class="kintoneplugin-input-text back_color_end" maxlength="7" value="#FFFFFF"
+                    id="back_color_end" />
                   <i class="color-paint-brush" value="#000000">
-                    <svg width="15px" height="15px"  fill="#676767" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M167.02 309.34c-40.12 2.58-76.53 17.86-97.19 72.3-2.35 6.21-8 9.98-14.59 9.98-11.11 0-45.46-27.67-55.25-34.35C0 439.62 37.93 512 128 512c75.86 0 128-43.77 128-120.19 0-3.11-.65-6.08-.97-9.13l-88.01-73.34zM457.89 0c-15.16 0-29.37 6.71-40.21 16.45C213.27 199.05 192 203.34 192 257.09c0 13.7 3.25 26.76 8.73 38.7l63.82 53.18c7.21 1.8 14.64 3.03 22.39 3.03 62.11 0 98.11-45.47 211.16-256.46 7.38-14.35 13.9-29.85 13.9-45.99C512 20.64 486 0 457.89 0z"/></svg>
+                    <svg width="15px" height="15px" fill="#676767" xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) -->
+                      <path
+                        d="M167.02 309.34c-40.12 2.58-76.53 17.86-97.19 72.3-2.35 6.21-8 9.98-14.59 9.98-11.11 0-45.46-27.67-55.25-34.35C0 439.62 37.93 512 128 512c75.86 0 128-43.77 128-120.19 0-3.11-.65-6.08-.97-9.13l-88.01-73.34zM457.89 0c-15.16 0-29.37 6.71-40.21 16.45C213.27 199.05 192 203.34 192 257.09c0 13.7 3.25 26.76 8.73 38.7l63.82 53.18c7.21 1.8 14.64 3.03 22.39 3.03 62.11 0 98.11-45.47 211.16-256.46 7.38-14.35 13.9-29.85 13.9-45.99C512 20.64 486 0 457.89 0z" />
+                    </svg>
                   </i>
                 </div>
               </div>
@@ -83,15 +98,20 @@
         <!--  ロウ now  -->
         <tr class="cf-plugin-text-line">
           <td>
-            <span class="title">{{html:lang.now_label}}</span>
+            <span class="title">{{html:lang.label_now}}</span>
           </td>
           <td>
             <div class="kintoneplugin-table-td-control">
               <div class="kintoneplugin-table-td-control-value">
                 <div>
-                  <input type="text" class="kintoneplugin-input-text text_color_now" maxlength="7" value="#000000" id="text_color_now"/>
+                  <input type="text" class="kintoneplugin-input-text text_color_now" maxlength="7" value="#000000"
+                    id="text_color_now" />
                   <i class="color-paint-brush" value="#000000">
-                    <svg width="15px" height="15px"  fill="#676767" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M167.02 309.34c-40.12 2.58-76.53 17.86-97.19 72.3-2.35 6.21-8 9.98-14.59 9.98-11.11 0-45.46-27.67-55.25-34.35C0 439.62 37.93 512 128 512c75.86 0 128-43.77 128-120.19 0-3.11-.65-6.08-.97-9.13l-88.01-73.34zM457.89 0c-15.16 0-29.37 6.71-40.21 16.45C213.27 199.05 192 203.34 192 257.09c0 13.7 3.25 26.76 8.73 38.7l63.82 53.18c7.21 1.8 14.64 3.03 22.39 3.03 62.11 0 98.11-45.47 211.16-256.46 7.38-14.35 13.9-29.85 13.9-45.99C512 20.64 486 0 457.89 0z"/></svg>
+                    <svg width="15px" height="15px" fill="#676767" xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) -->
+                      <path
+                        d="M167.02 309.34c-40.12 2.58-76.53 17.86-97.19 72.3-2.35 6.21-8 9.98-14.59 9.98-11.11 0-45.46-27.67-55.25-34.35C0 439.62 37.93 512 128 512c75.86 0 128-43.77 128-120.19 0-3.11-.65-6.08-.97-9.13l-88.01-73.34zM457.89 0c-15.16 0-29.37 6.71-40.21 16.45C213.27 199.05 192 203.34 192 257.09c0 13.7 3.25 26.76 8.73 38.7l63.82 53.18c7.21 1.8 14.64 3.03 22.39 3.03 62.11 0 98.11-45.47 211.16-256.46 7.38-14.35 13.9-29.85 13.9-45.99C512 20.64 486 0 457.89 0z" />
+                    </svg>
                   </i>
                 </div>
               </div>
@@ -101,9 +121,14 @@
             <div class="kintoneplugin-table-td-control">
               <div class="kintoneplugin-table-td-control-value">
                 <div>
-                  <input type="text" class="kintoneplugin-input-text back_color_now" maxlength="7" value="#FFFFFF" id="back_color_now"/>
+                  <input type="text" class="kintoneplugin-input-text back_color_now" maxlength="7" value="#FFFFFF"
+                    id="back_color_now" />
                   <i class="color-paint-brush" value="#000000">
-                    <svg width="15px" height="15px"  fill="#676767" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M167.02 309.34c-40.12 2.58-76.53 17.86-97.19 72.3-2.35 6.21-8 9.98-14.59 9.98-11.11 0-45.46-27.67-55.25-34.35C0 439.62 37.93 512 128 512c75.86 0 128-43.77 128-120.19 0-3.11-.65-6.08-.97-9.13l-88.01-73.34zM457.89 0c-15.16 0-29.37 6.71-40.21 16.45C213.27 199.05 192 203.34 192 257.09c0 13.7 3.25 26.76 8.73 38.7l63.82 53.18c7.21 1.8 14.64 3.03 22.39 3.03 62.11 0 98.11-45.47 211.16-256.46 7.38-14.35 13.9-29.85 13.9-45.99C512 20.64 486 0 457.89 0z"/></svg>  
+                    <svg width="15px" height="15px" fill="#676767" xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) -->
+                      <path
+                        d="M167.02 309.34c-40.12 2.58-76.53 17.86-97.19 72.3-2.35 6.21-8 9.98-14.59 9.98-11.11 0-45.46-27.67-55.25-34.35C0 439.62 37.93 512 128 512c75.86 0 128-43.77 128-120.19 0-3.11-.65-6.08-.97-9.13l-88.01-73.34zM457.89 0c-15.16 0-29.37 6.71-40.21 16.45C213.27 199.05 192 203.34 192 257.09c0 13.7 3.25 26.76 8.73 38.7l63.82 53.18c7.21 1.8 14.64 3.03 22.39 3.03 62.11 0 98.11-45.47 211.16-256.46 7.38-14.35 13.9-29.85 13.9-45.99C512 20.64 486 0 457.89 0z" />
+                    </svg>
                   </i>
                 </div>
               </div>
@@ -135,15 +160,20 @@
         <!--  ロウ yet  -->
         <tr class="cf-plugin-text-line">
           <td>
-            <span class="title">{{html:lang.yet_label}}</span>
+            <span class="title">{{html:lang.label_yet}}</span>
           </td>
           <td>
             <div class="kintoneplugin-table-td-control">
               <div class="kintoneplugin-table-td-control-value">
                 <div>
-                  <input type="text" class="kintoneplugin-input-text text_color_yet" maxlength="7" value="#000000" id="text_color_yet"/>
+                  <input type="text" class="kintoneplugin-input-text text_color_yet" maxlength="7" value="#000000"
+                    id="text_color_yet" />
                   <i class="color-paint-brush" value="#000000">
-                    <svg width="15px" height="15px"  fill="#676767" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M167.02 309.34c-40.12 2.58-76.53 17.86-97.19 72.3-2.35 6.21-8 9.98-14.59 9.98-11.11 0-45.46-27.67-55.25-34.35C0 439.62 37.93 512 128 512c75.86 0 128-43.77 128-120.19 0-3.11-.65-6.08-.97-9.13l-88.01-73.34zM457.89 0c-15.16 0-29.37 6.71-40.21 16.45C213.27 199.05 192 203.34 192 257.09c0 13.7 3.25 26.76 8.73 38.7l63.82 53.18c7.21 1.8 14.64 3.03 22.39 3.03 62.11 0 98.11-45.47 211.16-256.46 7.38-14.35 13.9-29.85 13.9-45.99C512 20.64 486 0 457.89 0z"/></svg>  
+                    <svg width="15px" height="15px" fill="#676767" xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) -->
+                      <path
+                        d="M167.02 309.34c-40.12 2.58-76.53 17.86-97.19 72.3-2.35 6.21-8 9.98-14.59 9.98-11.11 0-45.46-27.67-55.25-34.35C0 439.62 37.93 512 128 512c75.86 0 128-43.77 128-120.19 0-3.11-.65-6.08-.97-9.13l-88.01-73.34zM457.89 0c-15.16 0-29.37 6.71-40.21 16.45C213.27 199.05 192 203.34 192 257.09c0 13.7 3.25 26.76 8.73 38.7l63.82 53.18c7.21 1.8 14.64 3.03 22.39 3.03 62.11 0 98.11-45.47 211.16-256.46 7.38-14.35 13.9-29.85 13.9-45.99C512 20.64 486 0 457.89 0z" />
+                    </svg>
                   </i>
                 </div>
               </div>
@@ -155,7 +185,11 @@
                 <div>
                   <input type="text" class="kintoneplugin-input-text back_color_end" maxlength="7" value="#FFFFFF" id="back_color_yet"/>
                   <i class="color-paint-brush" value="#000000">
-                    <svg width="15px" height="15px"  fill="#676767" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M167.02 309.34c-40.12 2.58-76.53 17.86-97.19 72.3-2.35 6.21-8 9.98-14.59 9.98-11.11 0-45.46-27.67-55.25-34.35C0 439.62 37.93 512 128 512c75.86 0 128-43.77 128-120.19 0-3.11-.65-6.08-.97-9.13l-88.01-73.34zM457.89 0c-15.16 0-29.37 6.71-40.21 16.45C213.27 199.05 192 203.34 192 257.09c0 13.7 3.25 26.76 8.73 38.7l63.82 53.18c7.21 1.8 14.64 3.03 22.39 3.03 62.11 0 98.11-45.47 211.16-256.46 7.38-14.35 13.9-29.85 13.9-45.99C512 20.64 486 0 457.89 0z"/></svg>
+                    <svg width="15px" height="15px" fill="#676767" xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) -->
+                      <path
+                        d="M167.02 309.34c-40.12 2.58-76.53 17.86-97.19 72.3-2.35 6.21-8 9.98-14.59 9.98-11.11 0-45.46-27.67-55.25-34.35C0 439.62 37.93 512 128 512c75.86 0 128-43.77 128-120.19 0-3.11-.65-6.08-.97-9.13l-88.01-73.34zM457.89 0c-15.16 0-29.37 6.71-40.21 16.45C213.27 199.05 192 203.34 192 257.09c0 13.7 3.25 26.76 8.73 38.7l63.82 53.18c7.21 1.8 14.64 3.03 22.39 3.03 62.11 0 98.11-45.47 211.16-256.46 7.38-14.35 13.9-29.85 13.9-45.99C512 20.64 486 0 457.89 0z" />
+                    </svg>
                   </i>
                 </div>
               </div>
@@ -188,7 +222,8 @@
     </table>
     <br>
     <p class="kintoneplugin-row">
-        <button type="button" id="plugin_cancel" class="kintoneplugin-button-dialog-cancel">{{html:lang.plugin_cancel}}</button>
+      <button type="button" id="plugin_cancel"
+        class="kintoneplugin-button-dialog-cancel">{{html:lang.plugin_cancel}}</button>
         <button type="button" id="plugin_ok" class="kintoneplugin-button-dialog-ok">{{html:lang.plugin_ok}}</button>
     </p>
   </form>
@@ -196,12 +231,8 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8848137110933190"
       crossorigin="anonymous"></script>
   <!-- KintoneDisplay -->
-  <ins class="adsbygoogle"
-      style="display:block"
-      data-ad-client="ca-pub-8848137110933190"
-      data-ad-slot="3643192887"
-      data-ad-format="auto"
-      data-full-width-responsive="true"></ins>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8848137110933190" data-ad-slot="3643192887"
+    data-ad-format="auto" data-full-width-responsive="true"></ins>
   <script>
       (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
