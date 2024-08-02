@@ -59,6 +59,8 @@ tinyColorPicker and colors :https://github.com/PitPik/tinyColorPicker
  2024/03/24 0.2.0 プラグイン設定画面に Google AdSense 追加
 
  2024/06/06 0.3.0 プロセス処理者の名前表示機能追加
+
+ 2024/07/29 0.3.1 名前表示機能不備する場合があるのを改善(クラス名変更対応とダメなら出さない)
  
 ## 7.連絡
 

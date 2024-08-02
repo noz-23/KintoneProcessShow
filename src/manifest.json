@@ -1,6 +1,6 @@
 {
   "manifest_version": 1,
-  "version": "0.2.0",
+  "version": "0.3.1",
   "type": "APP",
   "name": {
     "en": "KintoneProcessShow",
@@ -45,7 +45,8 @@
 
       "paramBackColorEnd",
       "paramBackColorNow",
-      "paramBackColorYet"
+      "paramBackColorYet",
+      "paramShowName"
     ]
   }
 }

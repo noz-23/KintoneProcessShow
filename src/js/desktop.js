@@ -29,6 +29,7 @@
  *  2024/03/01 0.1.1 とりあえずバージョン
  *  2024/03/24 0.2.0 プラグイン設定画面に Google AdSense 追加
  *  2024/06/06 0.3.0 プロセス処理者の名前表示機能追加
+ *  2024/07/29 0.3.1 名前表示機能不備する場合があるのを改善(クラス名変更対応とダメなら出さない)
  */
 
 jQuery.noConflict();
@@ -42,8 +43,32 @@ jQuery.noConflict();
     'app.record.edit.show',   // 編集表示
   ];
 
-  // 一覧の上部エレメント取得 
-  const headElemnt = kintone.app.record.getHeaderMenuSpaceElement();
+  const DIV_ID = 'id_processShow';
+
+  // Kintone プラグイン 設定パラメータ
+  const config = kintone.plugin.app.getConfig(PLUGIN_ID_);
+  console.log('config:%o', config);
+
+  const paramShowName = config['paramShowName'];
+  // 
+  const textColorEnd = config['paramTextColorEnd'];
+  const textColorNow = config['paramTextColorNow'];
+  const textColorYet = config['paramTextColorYet'];
+
+  // 背景色
+  const backColorEnd = config['paramBackColorEnd'];
+  const backColorNow = config['paramBackColorNow'];
+  const backColorYet = config['paramBackColorYet'];
+
+  // 文字の大きさ
+  const textSizeEnd = config['paramTextSizeEnd'];
+  const textSizeNow = config['paramTextSizeNow'];
+  const textSizeYet = config['paramTextSizeYet'];
+
+  // 文字装飾
+  const textFontEnd = config['paramTextFontEnd'];
+  const textFontNow = config['paramTextFontNow'];
+  const textFontYet = config['paramTextFontYet'];
 
   kintone.events.on(EVENTS, async (events_) => {
     console.log('events_:%o', events_);
@@ -78,40 +103,26 @@ jQuery.noConflict();
     const listSortStatus = listStatus.sort((a, b) => { return (a.index < b.index) ? -1 : 1 });
     console.log('listSortStatus:%o', listSortStatus);
 
+    if (paramShowName == 'true') {
+      showProcess(nowStatus, listSortStatus, []);
+    }
     showiFrame(nowStatus, listSortStatus);
-
     return events_;
   });
-  
+
   const showProcess = async (nowStatus_, listStatus_, listNameStatus_) => {
 
-    // Kintone プラグイン 設定パラメータ
-    const config = kintone.plugin.app.getConfig(PLUGIN_ID_);
-    console.log('config:%o', config);
-
-    const paramShowName = config['paramShowName'];
-    // 
-    const textColorEnd = config['paramTextColorEnd'];
-    const textColorNow = config['paramTextColorNow'];
-    const textColorYet = config['paramTextColorYet'];
-
-    // 背景色
-    const backColorEnd = config['paramBackColorEnd'];
-    const backColorNow = config['paramBackColorNow'];
-    const backColorYet = config['paramBackColorYet'];
-
-    // 文字の大きさ
-    const textSizeEnd = config['paramTextSizeEnd'];
-    const textSizeNow = config['paramTextSizeNow'];
-    const textSizeYet = config['paramTextSizeYet'];
-
-    // 文字装飾
-    const textFontEnd = config['paramTextFontEnd'];
-    const textFontNow = config['paramTextFontNow'];
-    const textFontYet = config['paramTextFontYet'];
-
     // 一覧の上部エレメント取得 
-    var headElemnt = kintone.app.record.getHeaderMenuSpaceElement();
+    let headElemnt = kintone.app.record.getHeaderMenuSpaceElement();
+
+    var div = document.getElementById(DIV_ID);
+    console.log("DIV_ID:%o", div);
+    if (div != null) {
+      div.remove();
+    }
+
+    let divMaster = document.createElement("div");
+    divMaster.id = DIV_ID;
 
     // 上部にステータス追加
     let flg = false;
@@ -155,15 +166,18 @@ jQuery.noConflict();
       }
 
       // 追加
-      headElemnt.appendChild(div);
+      divMaster.appendChild(div);
     };
+    headElemnt.appendChild(divMaster);
   };
 
   const IFRAME_DATA = 'iframeData';	// 重複表示防止用のid名
-  const showiFrame = (nowStatus_, listStatus_) => {
+  const showiFrame = async (nowStatus_, listStatus_) => {
     // "https://*.cybozu.com/k/742/show#record=1" 形式のURLが入る
     // 公式でない引数の使い方のため、出来なくなるかもです
-    var iframeSrc = location.href;
+    var nowUrl = location.href;
+
+    var iframeSrc = ((nowUrl.indexOf('&') > 0) ? nowUrl.substring(0, nowUrl.indexOf('&')) : nowUrl) + '&tab=none';
     console.log("iframeSrc:%o", iframeSrc);
 
     // 重複表示防止
@@ -172,6 +186,16 @@ jQuery.noConflict();
       // 詳細表示後、編集などすると同じものが増えるのでIDで重複表示防止
       frame.remove();
     }
+
+    // 履歴の取得SON
+    //const param = {
+    //  app: kintone.app.getId(),   // アプリ番号
+    //  record: kintone.app.record.getId()      // レコード
+    //};
+
+    // https://xxx.cybozu.com/k/api/ntf/countMention.json?_lc=ja&_ref
+    //const status = await kintone.api(kintone.api.url('/k/api/ntf/countMention.json', true)+ '?_lc=ja&_ref=' + iframeSrc , 'POST',param );
+    //console.log("status:%o", status);
 
     // <iframe></iframe>タグの作成
     // css 化する予定
@@ -232,9 +256,13 @@ jQuery.noConflict();
       // 監視の開始
       obServer.observe(targetDoc, configObs);
 
-      let histButtons = [...doc.getElementsByClassName('gaia-app-statusbar-history')];
+      let histButtons = [...doc.getElementsByClassName('gaia-app-statusbar-history-button')];
+
       console.log('histButtons:%o', histButtons);
-      histButtons[0].click();
+      if (histButtons.length > 0) {
+        histButtons[0].click();
+      }
+
     };
   };
 
