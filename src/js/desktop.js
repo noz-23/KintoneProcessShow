@@ -31,6 +31,7 @@
  *  2024/06/06 0.3.0 プロセス処理者の名前表示機能追加
  *  2024/07/29 0.3.1 名前表示機能不備する場合があるのを改善(クラス名変更対応とダメなら出さない)
  *  2024/08/06 0.3.2 不具合修正(作りミス)
+ *  2024/08/16 0.3.3 プロセス処理者の名前表示を非公開API版で取得に変更
  */
 
 jQuery.noConflict();
@@ -95,22 +96,59 @@ jQuery.noConflict();
     //console.log('listKey:%o', listKey);
 
     const listStatus = [];
-    for (let name of listKey) {
-      listStatus.push(status.states[name]);
-    };
+    if (paramShowName == 'true') {
+      for (let name of listKey) {
+        listStatus.push(status.states[name]);
+      };
+    }
     //console.log('listStatus:%o', listStatus);
 
     // index順にソート(並び替え)
     const listSortStatus = listStatus.sort((a, b) => { return (a.index < b.index) ? -1 : 1 });
     console.log('listSortStatus:%o', listSortStatus);
 
-    showProcess(nowStatus, listSortStatus, []);
-    if (paramShowName == 'true') {
-      showiFrame(nowStatus, listSortStatus);
-    }
+    // 非公開API版
+    const listNameStatus = await getlistNameStatus();
+    console.log('listNameStatus:%o', listNameStatus);
+
+    showProcess(nowStatus, listSortStatus, listNameStatus);
+
+    // iframe での取得版
+    //showProcess(nowStatus, listSortStatus, []);
+    //if (paramShowName == 'true') {
+    //  showiFrame(nowStatus, listSortStatus);
+    //}
     return events_;
   });
 
+  const getlistNameStatus = async () => {
+    // 履歴の取得SON 
+    const param = {
+      app: kintone.app.getId(),   // アプリ番号
+      record: kintone.app.record.getId()      // レコード
+    };
+    // 非公開 API
+    const status = await kintone.api(kintone.api.url('/k/api/status/getHistory.json', true), 'POST', param);
+    console.log("status:%o", status);
+
+    let rtn = [];
+    for (const item of status.result.items) {
+      const name = item.assignees[0].name;
+      const status = item.state.label;
+
+      rtn.push({ name: name, status: status });
+    }
+    return rtn;
+  };
+
+
+  /*
+   プロセスの状態表示
+    引数　：nowStatus_      今のプロセス状態
+      ：listStatus_     プロセスリスト
+      ：listNameStatus_ プロセス処理した人 [ [{name:名前, status:状態名}...]
+    戻り値：なし
+   */
   const showProcess = async (nowStatus_, listStatus_, listNameStatus_) => {
 
     // 一覧の上部エレメント取得 
@@ -127,7 +165,7 @@ jQuery.noConflict();
 
     // 上部にステータス追加
     let flg = false;
-    for (var elemnt of listStatus_) {
+    for (const elemnt of listStatus_) {
       // ここら辺は、今後 css にしようと思います。
       let div = document.createElement("div");
       div.innerHTML = elemnt.name;
@@ -173,6 +211,12 @@ jQuery.noConflict();
   };
 
   const IFRAME_DATA = 'iframeData';	// 重複表示防止用のid名
+  /*
+   プロセス処理した人の取得 iframeから取得
+    引数　：nowStatus_      今のプロセス状態
+      ：listStatus_     プロセスリスト
+    戻り値：なし
+   */
   const showiFrame = async (nowStatus_, listStatus_) => {
     // "https://*.cybozu.com/k/742/show#record=1" 形式のURLが入る
     // 公式でない引数の使い方のため、出来なくなるかもです
